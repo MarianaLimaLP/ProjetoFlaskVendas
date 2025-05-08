@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos da Venda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Produtos da Venda #{{ codvenda }}</h1>
+
+    {% if produtos %}
+    <ul>
+        {% for p in produtos %}
+        <li>
+            {{ p.nome }} — R$ {{ p.preco }} x {{ p.qtde }} = R$ {{ p.valor }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Nenhum produto encontrado nesta venda.</p>
+    {% endif %}
+
+    <a href="{{ url_for('listar_vendas') }}">Voltar para Vendas</a>
+</body>
+</html>

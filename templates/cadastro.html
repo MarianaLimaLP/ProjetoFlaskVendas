@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    <form method="POST" action="/salvar/{{ tipo }}">
+        {% for campo in campos %}
+            <div>
+                <label for="{{ campo.nome }}">{{ campo.label }}:</label>
+                <input type="text" name="{{ campo.nome }}" id="{{ campo.nome }}" required>
+            </div>
+        {% endfor %}
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="/">Voltar</a>
+</body>
+</html>

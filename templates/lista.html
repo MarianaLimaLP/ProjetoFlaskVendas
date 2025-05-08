@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+
+    <table border="1">
+        <tr>
+            {% if tipo == 'produto' %}
+                <th>Código</th><th>Nome</th><th>Preço</th>
+            {% elif tipo == 'cliente' %}
+                <th>Código</th><th>Nome</th><th>Endereço</th>
+            {% endif %}
+        </tr>
+        {% for item in lista %}
+        <tr>
+            {% if tipo == 'produto' %}
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>R$ {{ '%.2f' % item[2] }}</td>
+            {% elif tipo == 'cliente' %}
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/">Voltar</a>
+
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Efetuar Venda</title>
+</head>
+<body>
+    <h1>Efetuar Venda</h1>
+
+    <form method="POST" action="/efetuar_venda">
+        <div>
+            <label for="codcliente">Cliente:</label>
+            <select name="codcliente" id="codcliente" required>
+                <option value="" disabled selected>Selecione um cliente</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente[0] }}">{{ cliente[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <h3>Produtos:</h3>
+        {% for produto in produtos %}
+            <div>
+                <input type="checkbox" name="codproduto" value="{{ produto[0] }}" id="prod{{ produto[0] }}">
+                <label for="prod{{ produto[0] }}">
+                    {{ produto[1] }} - R$ {{ '%.2f' % produto[2] }}
+                </label>
+                <label>Qtd:</label>
+                <input type="number" name="qtde" min="1" value="1" style="width: 60px;">
+            </div>
+        {% endfor %}
+
+        <button type="submit">Efetuar Venda</button>
+    </form>
+
+    <a href="/">Voltar</a>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const produtos = document.querySelectorAll('input[name="codproduto"]');
+            const quantidades = document.querySelectorAll('input[name="qtde"]');
+            const form = e.target;
+
+            const formData = new FormData();
+
+            produtos.forEach((chk, i) => {
+                if (chk.checked) {
+                    formData.append('codproduto', chk.value);
+                    formData.append('qtde', quantidades[i].value);
+                }
+            });
+
+            if (!formData.has('codproduto')) {
+                alert('Selecione pelo menos um produto.');
+                e.preventDefault();
+                return;
+            }
+
+            const hiddenForm = document.createElement('form');
+            hiddenForm.method = 'POST';
+            hiddenForm.action = '/efetuar_venda';
+
+            for (const [key, value] of formData.entries()) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                hiddenForm.appendChild(input);
+            }
+
+            // cliente
+            const clienteId = document.getElementById('codcliente').value;
+            const clienteInput = document.createElement('input');
+            clienteInput.type = 'hidden';
+            clienteInput.name = 'codcliente';
+            clienteInput.value = clienteId;
+            hiddenForm.appendChild(clienteInput);
+
+            document.body.appendChild(hiddenForm);
+            hiddenForm.submit();
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>

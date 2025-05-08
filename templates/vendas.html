@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Lista de Vendas</h1>
+
+    <ul>
+        {% for venda in vendas %}
+        <li>
+            Venda #{{ venda.codvenda }} - R$ {{ venda.valor_total }}<br>
+            <a href="{{ url_for('produtos_da_venda', codvenda=venda.codvenda) }}">Ver produtos</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Voltar</a>
+</body>
+</html>

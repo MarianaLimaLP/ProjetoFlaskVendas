@@ -1,0 +1,130 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f2fc;
+    color: #4a0265;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #6a0dad;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(106, 13, 173, 0.2);
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3bce3;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #6a0dad;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4a0265;
+}
+
+a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #6a0dad;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #ffffff;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(106, 13, 173, 0.1);
+}
+
+li a {
+    margin-left: 10px;
+    color: #6a0dad;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.venda-lista li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(106, 13, 173, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: 0 5px 15px rgba(106, 13, 173, 0.3);
+}
+
+.fechar {
+    color: #6a0dad;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.fechar:hover {
+    color: #4a0265;
+}
